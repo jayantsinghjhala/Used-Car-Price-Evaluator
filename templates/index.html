@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Used Car Price Evaluator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add your external dependencies -->
+    <link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/util.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+</head>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 pt-5">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="static/images/gif.png" alt="IMG">
+                </div>
+
+                <form id="price_form" action="{{ url_for('predict')}}" method="POST" class="login100-form validate-form {% if not show_form %} d-none {% endif %}">
+                    <span class="login100-form-title">
+                        Evaluate Car Price
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Ex-Showroom price is required" style="display: none;">
+                        <input class="input100" type="text" name="new_price" placeholder="Ex-Showroom Price(₹)" oninput="$(this).val($(this).val().replace(/[^0-9.]/g, ''))">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Year is required" style="display: none;">
+                        <select name="year" class="input100"></select>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Seller type is required" style="display: none;">
+                        <select name="sellertype" class="input100">
+                            <option value="" selected disabled>Select Seller Type</option>
+                            <option value="Individual">Individual</option>
+                            <option value="Dealer">Dealer</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input" data-validate="Number of Seats are required" style="display: none;">
+                        <select name="seats" class="input100">
+                            <option value="" selected disabled>Number of Seats</option>
+                            <option value="2">2 Seater</option>
+                            <option value="4">4 Seater</option>
+                            <option value="5">5 Seater</option>
+                            <option value="6">6 Seater</option>
+                            <option value="7">7 Seater</option>
+                            <option value="8">8 Seater</option>
+                            <option value="9">9 Seater</option>
+                            <option value="10">10 Seater</option>
+                            <option value="14">14 Seater</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-car" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Fuel type is required" style="display: none;">
+                        <select name="fuel" class="input100">
+                            <option value="" selected disabled>Select Fuel Type</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="CNG">CNG</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-tint" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Transmission type is required" style="display: none;">
+                        <select name="transmissiontype" class="input100">
+                            <option value="" selected disabled>Select Transmission</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automatic">Automatic</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Mileage is required" style="display: none;">
+                        <input class="input100" type="text" name="mileage" placeholder="Approximate Mileage (km/ltr)" oninput="$(this).val($(this).val().replace(/[^0-9.]/g, ''))">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-road" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Engine power is required" style="display: none;">
+                        <input class="input100" type="text" name="enginecc" placeholder="Engine Power (CC)" oninput="$(this).val($(this).val().replace(/[^0-9.]/g, ''))">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-car" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Kilometers driven is required" style="display: none;">
+                        <input class="input100" type="text" name="kmdriven" placeholder="Kilometers Driven" oninput="$(this).val($(this).val().replace(/[^0-9.]/g, ''))">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-road" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <!-- Calculate Price button (initially hidden) -->
+                    <button id="calculateBtn" class="login100-form-btn mb-2" style="display: none;">
+                        Calculate Current Value of Car
+                    </button>
+                    <!-- Next button -->
+                    <button id="nextBtn" class="login100-form-btn mb-2" style="margin-right: 10px;">
+                        Next
+                    </button>
+                    <!-- Previous button -->
+                    <button id="prevBtn" class="login100-form-btn" style="display: none; background-color: rgb(91, 91, 167);">
+                        Previous
+                    </button>
+                    
+                </form>
+                <div class="login100-form {% if show_form %} d-none {% endif %}">
+                    <p class="" style="margin-top: 10px;font-size: 24px;color: #4CAF50;/* font-family: 'Arial', sans-serif; */">You Can Sell this Car For <strong class="text-center">{{ prediction_text }}</strong></p>
+                    <button id="recalculateBtn" class="login100-form-btn " style="margin-top: 120px;margin-bottom: 5px;background-color: #ccc872;">Recalculate Price for Another Car</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include your scripts -->
+    <script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="static/vendor/bootstrap/js/popper.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/vendor/select2/select2.min.js"></script>
+    <script src="static/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            $('.js-tilt').tilt({
+                scale: 1.1
+            })
+
+            $('.input100').keypress(function(e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    if (currentTab < inputFields.length - 1) {
+                        $('#nextBtn').click(); // Clicking the 'Next' button on 'Enter' press
+                    } else {
+                        $("#calculateBtn").click(); // Clicking the 'Calculate' button when at the last visible field
+                    }
+                }
+            });
+            var yearDropdown = document.querySelector('select[name="year"]');
+
+            var option = document.createElement('option');
+                option.value = "";
+                option.textContent = "Registration Year";
+                option.selected = true;
+                option.disabled = true;
+                yearDropdown.appendChild(option);
+            for (var year = 2021; year >= 1990; year--) {
+                var option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearDropdown.appendChild(option);
+            }
+            var currentTab = 0;
+            var inputFields = $(".validate-input");
+
+            showTab(currentTab);
+
+            function showTab(n) {
+                $(inputFields[n]).show();
+
+                if (n === 0) {
+                    $("#prevBtn").hide();
+                } else {
+                    $("#prevBtn").show();
+                }
+
+                if (n === inputFields.length - 1) {
+                    $("#nextBtn").hide();
+                    $("#calculateBtn").show();
+                } else {
+                    $("#nextBtn").show();
+                    $("#calculateBtn").hide();
+                }
+            }
+
+            $("#prevBtn").click(function(event) {
+                event.preventDefault();
+                $(inputFields[currentTab]).hide();
+                currentTab = currentTab - 1;
+                showTab(currentTab);
+            });
+
+            $("#nextBtn").click(function(event) {
+                event.preventDefault();
+                if (validateForm()) {
+                    $(inputFields[currentTab]).hide();
+                    currentTab = currentTab + 1;
+                    showTab(currentTab);
+                }
+            });
+            $("#calculateBtn").click(function(event) {
+                event.preventDefault();
+                if (validateForm()) {
+                    $("#price_form").submit();
+                    $("#price_form").hide();
+                    $("#recalculateBtn").show();
+                }
+            });
+
+            $("#recalculateBtn").click(function(event) {
+                event.preventDefault();
+                let currentUrl = window.location.href;
+                let modifiedUrl = currentUrl.replace('/predict', '');
+                window.location.href = modifiedUrl;
+            });
+            function validateForm() {
+                $(".warning").remove(); // Clear any previous validation messages
+
+                var currentInput = $(inputFields[currentTab]).find("input[type='text'], select");
+                var value = $(currentInput).val();
+
+                var isValid = true;
+
+                if (currentInput.attr("name") === "new_price") {
+                    if (value === "" || isNaN(value)) {
+                        $("input[name='new_price']").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please enter a valid Ex-Showroom Price!</p>");
+                        isValid = false;
+                    }
+                }
+
+                if (currentInput.attr("name") === "year") {
+                    if (value === null || value === '') {
+                        $(".validate-input").eq(currentTab).find("select").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please select a Fuel Type!</p>");
+                        isValid = false;
+                    }
+                }
+
+                if (currentInput.attr("name") === "sellertype") {
+                    if (value === null || value === '') {
+                        $(".validate-input").eq(currentTab).find("select").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please select a Seller Type!</p>");
+                        isValid = false;
+                    }
+                }
+
+                if (currentInput.attr("name") === "seats") {
+                    if (value === null || value === '') {
+                        $(".validate-input").eq(currentTab).find("select").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please select the Number of Seats!</p>");
+                        isValid = false;
+                    }
+                }
+
+                if (currentInput.attr("name") === "fuel") {
+                    if (value === null || value === '') {
+                        $(".validate-input").eq(currentTab).find("select").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please select a Fuel Type!</p>");
+                        isValid = false;
+                    }
+                }
+
+                if (currentInput.attr("name") === "transmissiontype") {
+                    if (value === null || value === '') {
+                        $(".validate-input").eq(currentTab).find("select").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please select a Transmission!</p>");
+                        isValid = false;
+                    }
+                }
+                if (currentInput.attr("name") === "mileage") {
+                    if (value === "" || isNaN(value)) {
+                        $("input[name='mileage']").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please enter a valid Mileage!</p>");
+                        isValid = false;
+                    }
+                }
+
+                if (currentInput.attr("name") === "enginecc") {
+                    if (value === "" || isNaN(value)) {
+                        $("input[name='enginecc']").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please enter a valid Engine Power (CC)!</p>");
+                        isValid = false;
+                    }
+                }
+
+                if (currentInput.attr("name") === "kmdriven") {
+                    if (value === "" || isNaN(value)) {
+                        $("input[name='kmdriven']").parent(".validate-input").before("<p class='warning mb-2 text-center' style='color: red; margin-top: 5px;'>Please enter a valid Kilometers Driven!</p>");
+                        isValid = false;
+                    }
+                }
+
+                // Add validations for other fields as needed...
+                
+                return isValid;
+            }
+
+        });
+    </script>
+</body>
+</html>

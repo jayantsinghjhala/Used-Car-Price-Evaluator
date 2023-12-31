@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
+    <title>Used Car Evaluator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Gradient Background Colors */
+        .bluebar {
+            background: linear-gradient(to right, #752785, #662f2f);
+            color: white;
+        }
+
+        .content {
+            background: linear-gradient(to right bottom, #f1f1f1, #ffffff);
+            padding: 20px;
+        }
+
+        footer {
+            background: linear-gradient(to right, #752785, #662f2f);
+            color: white;
+            padding: 20px;
+        }
+
+        /* Additional Styles */
+        .heading {
+            color: black;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+            font-family: "Arial", sans-serif;
+        }
+
+        .a {
+            padding: 5px;
+            border: solid;
+            border-radius: 5px;
+            font-size: 15px;
+            width: 23%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .c {
+            margin-top: 30px;
+        }
+
+        .d {
+            padding: 5px;
+            border: solid;
+            border-radius: 5px;
+            font-size: 20px;
+            width: 23%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row bluebar py-3">
+        <div class="col">
+            <a href="#home"><img src="static\css\assets\logo.png" alt="logo" style="max-width:210px;"></a>
+        </div>
+        <p class="col m-0 gradient text-center"><strong>&emsp;&emsp;EVALUATE YOUR OLD CAR</strong></p>
+    </div>
+
+    <div class="content">
+        <div align="center" id="evaluator" style="font-family: 'Arial', sans-serif;">
+            <p class="heading gradient"><b>Please Provide Required Information to Calculate Car Price</b></p>
+            <form id="carForm" action="{{ url_for('predict')}}" method="POST">
+                <div class="form-group" style="display: block;">
+                    <label for="new_price"><b>Ex-Showroom Price (in Lakhs)</b></label><br>
+                    <input type="Number" name="new_price" required="required" class="form-control" placeholder="Enter Ex-Showroom Price">
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label for="year"><b>Model Year</b></label><br>
+                    <select name="year" class="form-control">
+                        {% for year in range(1990, 2024) %}
+                            {% if year == 2015 %}
+                                <option value="{{ year }}" selected>{{ year }}</option>
+                            {% else %}
+                                <option value="{{ year }}">{{ year }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group" style="display: none;">
+                    <label for="fuel"><b>Fuel Type</b></label><br>
+                    <select name="fuel" class="form-control">
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="CNG">CNG</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="display: none;">
+                    <label for="transmissiontype"><b>Transmission Type</b></label><br>
+                    <select name="transmissiontype" class="form-control">
+                        <option value="Manual">Manual</option>
+                        <option value="Automatic">Automatic</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label for="mileage"><b>Approximate Mileage (km/ltr)</b></label><br>
+                    <input class="form-control" type="Number" name ="mileage" required="required" placeholder="Enter Mileage">
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label for="enginecc"><b>Engine Power (CC)</b></label><br>
+                    <input type="Number" name="enginecc" required="required" class="form-control" placeholder="Enter Engine Power">
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label for="kmdriven"><b>Kilometers Driven</b></label><br>
+                    <input type="Number" name="kmdriven" required="required" class="form-control" placeholder="Enter Kilometers Driven">
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="button" id="prevBtn" class="btn btn-secondary btn-lg">Previous</button>
+                    <button type="button" id="nextBtn" class="btn btn-primary btn-lg">Next</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" style="display: none;">Calculate Current Value of Car</button>
+                </div>
+            </form>
+            <p align="center" class="heading" id="predictionText"></p>
+        </div>
+    </div>
+
+    <footer class="text-center text-secondary py-5 bluebar">
+        <p><strong>Designed By</strong></p>
+        <p>Jayant Singh Jhala<br>
+            LinkedIn: <a href="https://www.linkedin.com/in/jayantsinghjhala/" target="_blank" class="text-light">Jayant Singh Jhala</a><br>
+            E-mail: <a href="https://mail.google.com/mail/u/2/#inbox?compose=GTvVlcRzCbfPgDsDhQhXnbqRcBvXflZhJQsGdWrVNBXqnrhVfXXWXLFzhRXCzfVmpmtHrZctwkBSD" target="_blank" class="text-light">jayantsinghjhala2002@gmail.com</a>
+        </p>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+     $(document).ready(function(){
+        var currentTab = 0;
+        var form = $("#carForm");
+        var prevBtn = $("#prevBtn");
+        var nextBtn = $("#nextBtn");
+        var submitBtn = $("#submitBtn");
+
+        showTab(currentTab);
+
+        nextBtn.click(function(){
+            if (validateForm()) {
+                currentTab++;
+                showTab(currentTab);
+            }
+        });
+
+        prevBtn.click(function(){
+            currentTab--;
+            showTab(currentTab);
+        });
+
+        form.submit(function(e){
+            e.preventDefault();
+            if (validateForm()) {
+                form.submit();
+            }
+        });
+
+        function showTab(n) {
+            var tabs = form.find(".form-group");
+            tabs.eq(n).show();
+            if (n == 0) {
+                prevBtn.hide();
+            } else {
+                prevBtn.show();
+            }
+            if (n == (tabs.length - 1)) {
+                nextBtn.hide();
+                submitBtn.show();
+            } else {
+                nextBtn.show();
+                submitBtn.hide();
+            }
+        }
+
+        function validateForm() {
+            var valid = true;
+            var tabs = form.find(".form-group");
+            var inputs = tabs.eq(currentTab).find("input, select");
+            inputs.each(function(){
+                if ($(this).prop("required") && $(this).val() == "") {
+                    valid = false;
+                    return false;
+                }
+            });
+            return valid;
+        }
+    });
+</script>
+</body>
+</html>

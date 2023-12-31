@@ -1,0 +1,85 @@
+body{font-family: 'Montserrat';font-size:15px;line-height:1.5}html{overflow-x:hidden}
+
+hr{border:0;border-top:1px dotted rgb(91, 74, 74);margin:20px 0}
+
+.jayant{font-size: xxx-large;text-align: center;}
+
+.gradient{
+     font-size: 72px;
+  background: -webkit-radial-gradient(#752785, #662f2f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bgimg{
+     background-image: url("header.webp");
+}
+.shadow{box-shadow: 0 3px 6px 0 rgba(0,0,0,.4);}
+.bluebar {
+background-color: #ffffff00;
+letter-spacing: 1px;
+font-family:"Arial",sans-serif;
+}
+
+h1{font-size:36px}h4{font-size:20px}
+h1,h4{font-family:'Montserrat';font-weight:400;margin:10px 0;letter-spacing:1.5px}
+
+/* Separate */
+
+.top{margin:auto; position:relative;width:1230px;z-index:3; box-shadow: 0 2px 0px 0 rgba(0,0,0,.2);}.top{top:0}
+
+.bar .bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
+
+.justify{text-align:justify!important}
+.center{text-align:center!important}
+
+.right{float:right!important}
+
+.display-container{position:relative}
+
+.content{margin-left:auto;margin-right:auto}
+
+.image{max-width:100%;height:auto}img{vertical-align:middle}a{color:inherit}
+
+.padding-large{padding:12px 24px!important}
+.padding-64{padding-top:64px!important;padding-bottom:64px!important}
+.padding-32{padding-top:32px!important;padding-bottom:32px!important}
+
+.opacity-75{opacity:0.75}
+
+.col{float: none;width:100%;
+     color: black;
+     text-align: center;
+     }
+.col.l{float: left;
+     width: 33.33%;
+     }
+.col.m{float: right;
+     width: 33.33%;
+     }
+
+.round{border-radius:4px}
+
+.large{font-size:18px!important}
+
+.bar{width:100%;overflow:hidden}.center .bar{display:inline-block;width:auto}
+
+.row:after,.row:before,.row-padding:after,.row-padding:before,
+.cell-row:before,.cell-row:after,.clear:after,.clear:before,.bar:before,.bar:after{content:"";display:table;clear:both}
+
+.text-grey{color:#757575!important}
+
+.text-blue-grey{color:#607d8b!important}
+
+.light-grey{color:#000!important;background-color:#f1f1f1!important}
+
+.hover-text-green:hover{color:#4CAF50!important}
+
+.hover-text-red:hover{color:#631818!important}
+
+.button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+
+
+
+
+
+

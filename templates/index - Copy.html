@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--meta name="viewport" content="width=device-width, initial-scale=1 ,user-scalable=0"-->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
+    <title>Used Car Evaluator</title>
+    <link rel="stylesheet" href="static\css\style2.css">
+    <link rel="stylesheet" href="static\css\style.css">
+    
+</head>
+<body>
+<!-- Navbar (sit on top) -->
+<div class="top">
+    <div class="bluebar row">
+      <a class="col" href="#home"><img src="static\css\assets\logo.png" alt="logo" style="max-width:210px;;"></a>
+      
+      <!-- Right-sided navbar links. Hide them on small screens -->
+      <div class="col m" style="text-align-last: right;">
+        <a href="#about" class="bar-item button hover-text-red">About</a>
+        <a href="#evaluator" class="bar-item button hover-text-red">Evaluator</a>
+        <a href="#Why" class="bar-item button hover-text-red">Why</a>
+        <a href="#contact" class="bar-item button hover-text-red">Contact</a>
+      </div>
+      <p class="col m gradient" style="font-size: 40px;text-align: center;width: 44%;"><strong>&emsp;&emsp;EVALUATE YOUR OLD &emsp;&emsp;CAR</strong></p>
+    </div>
+   
+</div>
+<!-- Header -->
+<!-- <header class="display-container content" style="max-width:1600px;min-width:500px" id="home">
+
+  <img class="round shadow " src="static\css\assets\head.jpg" alt="Admin" style="opacity: 0.92; display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1220px;
+  height: 100%;">
+</header> -->
+<!-- Page content -->
+<div class="content" style="max-width:1100px">
+
+  <!-- About Section -->
+  <!-- <p class="large" align="justify">&emsp;&emsp;The used car market refers to the buying and selling of previously owned vehicles.
+     This market is a significant part of the automotive industry and plays an essential role in providing affordable
+      transportation options for consumers. Buyers can find a wide range of models and makes at various price points,
+       and sellers can earn money by trading in or selling their used vehicles. The used car market is influenced by
+        factors such as supply and demand, market trends, and the condition of the vehicles being sold.</p>
+  <div class="row padding-64" id="about">
+    <div class="col l padding-large">
+      <img src="static\css\assets\people.jpg" class="round opacity-75 shadow" alt="Main Gate" width="650" height="300">
+      <br><br>
+      <img src="static\css\assets\trust.jpg" class="round shadow" alt="Main Gate" width="650" height="300">
+    </div>
+
+    <div class="col m padding-large">
+        <p class="large" align="justify">&emsp;&emsp;A used car price prediction model is a statistical tool that uses data
+           analysis techniques to forecast the future value of a pre-owned vehicle. This type of model can help buyers and
+            sellers make informed decisions by providing an estimate of a used car's worth based on its features, condition,
+             and other relevant factors. The accuracy of the predictions can depend on the quality and quantity of the data
+              used to train the model, as well as the sophistication of the algorithms employed.</p>
+        <br>
+        <p class="large" align="justify">&emsp;&emsp;The used car market in India has experienced significant growth in recent
+           years due to factors such as increasing disposable income, changing consumer preferences, and the growing
+            availability of financing options. With a large population and an expanding middle class,
+             India is now one of the world's largest markets for used cars. Buyers can choose from a wide range of
+              models and makes, including both domestic and imported vehicles.</p>
+        
+    </div>
+  </div> -->
+
+  <!-- <hr>   -->
+  <div align="center" id="evaluator" style="font-family: 'Arial',sans-serif;">  
+    <p class="heading gradient"><b>Please Give Required Information to Calculate Car Price</b></p>
+    <form action="{{ url_for('predict')}}" method="POST">
+        <div style="font-size: larger;"><b>Ex-Showroom Price(in Lakhs)</b><br>
+            <input type="Number" name="new_price" required="required" class="a">
+        </div>
+
+        <div style="font-size: larger;"><b>Model Year</b><br>
+            <!--<input class="a" type="Number" name ="year" required="required">-->
+          <select name="year" class="a">
+            <option value=" 1990 "> 1990 </option>
+            <option value=" 1991 "> 1991 </option>
+            <option value=" 1992 "> 1992 </option>
+            <option value=" 1993 "> 1993 </option>
+            <option value=" 1994 "> 1994 </option>
+            <option value=" 1995 "> 1995 </option>
+            <option value=" 1996 "> 1996 </option>
+            <option value=" 1997 "> 1997 </option>
+            <option value=" 1998 "> 1998 </option>
+            <option value=" 1999 "> 1999 </option>
+            <option value=" 2000 "> 2000 </option>
+            <option value=" 2001 "> 2001 </option>
+            <option value=" 2002 "> 2002 </option>
+            <option value=" 2003 "> 2003 </option>
+            <option value=" 2004 "> 2004 </option>
+            <option value=" 2005 "> 2005 </option>
+            <option value=" 2006 "> 2006 </option>
+            <option value=" 2007 "> 2007 </option>
+            <option value=" 2008 "> 2008 </option>
+            <option value=" 2009 "> 2009 </option>
+            <option value=" 2010 "> 2010 </option>
+            <option value=" 2011 "> 2011 </option>
+            <option value=" 2012 "> 2012 </option>
+            <option value=" 2013 "> 2013 </option>
+            <option value=" 2014 "> 2014 </option>
+            <option value=" 2015 " selected> 2015 </option>
+            <option value=" 2016 "> 2016 </option>
+            <option value=" 2017 "> 2017 </option>
+            <option value=" 2018 "> 2018 </option>
+            <option value=" 2019 "> 2019 </option>
+            <option value=" 2020 "> 2020 </option>
+            <option value=" 2021 "> 2021 </option>
+            <option value=" 2022 "> 2022 </option>
+            <option value=" 2023 "> 2023 </option>
+          </select>
+        </div>
+    
+        <div style="font-size: larger;"><b>Fuel Type</b><br>
+          <select name="fuel" class="a">
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="CNG">CNG</option>
+          </select>
+        </div>
+        
+        <div style="font-size: larger;"><b>Transmission Type</b><br>
+          <select name="transmissiontype" class="a">
+            <option value="Manual">Manual</option>
+            <option value="Automatic">Automatic</option>
+          </select>
+        </div>            
+
+        <div style="font-size: larger;"><b>Approximate Mileage (km/ltr)</b><br>
+          <input class="a" type="Number" name ="mileage" required="required">
+        </div>
+
+        <div style="font-size: larger;"><b>Engine Power (CC)</b><br>
+          <input type="Number" name="enginecc" required="required" class="a">
+        </div>
+
+        <div style="font-size: larger;"><b>Kilometers Driven</b><br>
+          <input type="Number" name="kmdriven" required="required" class="a">
+        </div>
+
+
+        <div class="c" align="center"><button type="submit" value="Predict" class="d">Calculate Current Value of Car</button>
+        </div>
+    </form>
+    <p align="center" class="heading">{{ prediction_text }}</p>
+  </div>
+
+  <!-- Menu Section -->
+  <!-- <hr>
+  <div class="row padding-64" id="Why">
+    <h1 class="heading gradient"><strong>&emsp;Why Used Car?</strong></h1><br>
+    <div class="col l padding-large">
+      
+      <p class="text-grey" align="justify">Manufacturers are ramping up efforts to make vehicles more eco-friendly. Most of them are sourcing materials ethically, innovating to save energy, adopting sustainable and tech-driven practices at plants, and developing alternative-fuel engines. Curbing greenhouse gas emissions, especially carbon dioxide, is also among their top priorities.</p> 
+
+      <p class="text-grey" align="justify">less carbon dioxide a vehicle emits per km, the better it is for the environment. Newer models perform better in this regard, but emission levels vary based on the type of engine and the size of the vehicle. A diesel engine emits more carbon dioxide than an EV engine, and a large car will probably be a worse emitter than a two-wheeler. The parameters differ based on the models under consideration, but here's a guideline: any vehicle that emits less than 100 grams of carbon dioxide per km is a reasonably green choice.</p> 
+        
+      <p class="text-grey" align="justify">Now, if you were to do a carbon lifecycle assessment, EVs would emerge as the clear winners. For example, a family car generates 24 tonnes of carbon dioxide over its lifecycle, whereas an equivalent EV emits only 18 tonnes. But things get muddied in the production phase, and here's why: To produce a new EV, manufacturers need large amounts of steel and aluminium for the body, suspension, and braking systems, copper for the electronic wiring, lots of plastic for the dashboard, seats, and switches, and rare-earth metals like lithium for the batteries.</p> 
+    </div>
+    <div class="col l padding-large">
+      <br>
+      <img src="static\css\assets\cars.webp" class="round opacity-75" alt="Mess" width="550" height="300">
+      <br><br>
+      <img src="static\css\assets\pollution.jpg" class="round" alt="Mess" width="550" height="300">
+    </div>
+  </div>
+  <h4 class="heading gradient"><strong>Reuse vehicles, bring down climate footprint</strong></h4>
+    <p class="text-grey" align="justify">Will extending the life of older vehicles lead to a drop in the carbon footprint? Research from Japan suggests as much, stating that if vehicle owners held on to their cars for just 10 percent longer, the domestic carbon footprint from cars would decrease by 30.7 million tonnes. Emissions are a serious problem globally, with 99 percent of the world’s urban population breathing polluted air and energy-related carbon dioxide emissions increasing by 6 percent in 2021 to their highest level ever. From a social development perspective, both manufacturers and consumers should consider clean energy and mobility goals as well as identify and avoid over-consumption patterns in order to reduce the overall climate impact and improve the lives of people everywhere. Any used vehicle that is well-maintained, offers low mileage, and has an engine that’s in top shape is a good choice for consumers and the environment. Whenever somebody buys, rents, or even pays a monthly subscription for a used car or two-wheeler, they say 'yes' to a greener mode of transport.</p>
+    
+  <hr> -->
+
+  <!-- Contact Section -->
+  <!-- <div class="container center padding-64" id="contact">
+    <h1 class="heading gradient"><strong>Contact</strong></h1><br>
+    <h4 style="font-family:'Arial',sans-serif;"><strong>Developers</strong></h4>
+    
+  </div>
+  <hr> -->
+    
+<!-- End page content -->
+</div>
+  
+<!-- Footer -->
+<footer class="center light-grey padding-32">
+  <p style="font-family:'Arial',sans-serif;"><strong>Designed By</strong><br>
+    <p>Jayant Singh Jhala<br>
+      LinkedIn:
+      <a href="https://www.linkedin.com/in/jayantsinghjhala/" target="_blank" class="hover-text-green">Jayant Singh Jhala</a><br>
+      E-mail:
+      <a href="https://mail.google.com/mail/u/2/#inbox?compose=GTvVlcRzCbfPgDsDhQhXnbqRcBvXflZhJQsGdWrVNBXqnrhVfXXWXLFzhRXCzfVmpmtHrZctwkBSD" target="_blank" class="hover-text-green">jayantsinghjhala2002@gmail.com</a>
+    </p>
+  </p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+/* Add Bootstrap classes where applicable for enhanced styling */
+
+/* Apply Bootstrap classes to form inputs */
+input[type="number"].a {
+	padding: 5px;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	font-size: 15px;
+	width: 23%;
+	background: rgba(0, 0, 0, 0.4);
+ }
+ 
+ /* Adjust heading style */
+ .heading {
+	color: black;
+	font-size: 30px;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+	border: 1px;
+	font-family: "Arial", sans-serif;
+ }
+ 
+ /* Apply Bootstrap class for margin-top */
+ .margin-top-30 {
+	margin-top: 30px;
+ }
+ 
+ /* Enhance button styling with Bootstrap */
+ button.d {
+	padding: 5px;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	font-size: 20px;
+	width: 23%;
+	background: rgba(0, 0, 0, 0.4);
+	color: #fff;
+	background-color: #007bff;
+ }
+ 
