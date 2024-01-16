@@ -2,3 +2,7 @@
 * text=auto
 . filter=lfs diff=lfs merge=lfs -text
 C:/Users/JAYANT/Documents/Convocation[[:space:]]Used[[:space:]]Car[[:space:]]Price[[:space:]]Evaluator filter=lfs diff=lfs merge=lfs -text
+old_files/file_0.pkl filter=lfs diff=lfs merge=lfs -text
+file.pkl filter=lfs diff=lfs merge=lfs -text
+venv/Lib/site-packages/torch/lib/dnnl.lib filter=lfs diff=lfs merge=lfs -text
+venv/Lib/site-packages/torch/lib/torch_cpu.dll filter=lfs diff=lfs merge=lfs -text
